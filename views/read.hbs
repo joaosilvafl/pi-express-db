@@ -1,0 +1,46 @@
+<h1> {{title}}</h1>
+<table class="table table-primary">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">N° de Matrícula</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Email</th>
+            <th scope="col">Editar </th>
+            <th scope="col">Apagar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each alunos}}
+            <tr>
+                <th>1</th>
+                <th>{{matricula}}</th>
+                <th>{{nome}}</th>
+                <th>{{data_nascimento}}</th>
+                <th>{{email}}</th>
+                <td></td>
+                <td></td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+<a class="btn btn-outline-secondary" href="alunos/new/" type="button">
+    Novo aluno
+    <i class="bi bi-person-add"></i>
+</a>
+{{! <a
+                        class="btn btn-outline-secondary"
+                        href="alunos/new/"
+                        type="button"
+                    >
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+
+                    <a
+                        class="btn btn-outline-secondary"
+                        href="alunos/new/"
+                        type="button"
+                    >
+                        <i class="bi bi-trash-fill"></i>
+                    </a> }}
