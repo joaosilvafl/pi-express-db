@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 var alunos = require("../tests/mocks/alunos.json");
 const { routes } = require("../app");
+const { log } = require("handlebars");
 /* GET users listing. */
 router.get("/", function (_req, res, next) {
     const data = {
