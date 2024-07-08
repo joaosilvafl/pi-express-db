@@ -53,15 +53,17 @@ router.get("/edit/:matricula", function (req, res, next) {
 
     res.render("forms", data);
 });
-router.put("/matricula", function (req, res, next) {
+router.put("/matricula/", function (req, res, next) {
     const { matricula } = req.params;
     const novoAluno = req.body;
     alunos.content[matricula] = { ...novoAluno, matricula: Number(matricula) };
     // res.send(rq.body);
     res.redirect("/alunos");
 });
-router.delete("/", function (req, res, next) {
-    res.send("index");
+router.delete("/:matricula", function (req, res, next) {
+    const { matricula } = req.params;
+    delete alunos.content[matricula];
+    res.redirect(303, "/alunos");
 });
 
 module.exports = router;
