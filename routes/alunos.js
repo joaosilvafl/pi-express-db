@@ -23,18 +23,6 @@ router.get("/new", function (_req, res, next) {
 
     res.render("forms", data);
 });
-router.post("/create", function (req, res, next) {
-    const novoAluno = req.body;
-    const matricula = novoAluno.matricula;
-
-    alunos.content[matricula] = {
-        ...novoAluno,
-        matricula: Number(matricula),
-    };
-
-    res.redirect("/alunos");
-});
-
 router.get("/:matricula", function (req, res, next) {
     const { matricula } = req.params;
     const aluno = alunos.content[matricula];
@@ -52,6 +40,17 @@ router.get("/edit/:matricula", function (req, res, next) {
     };
 
     res.render("forms", data);
+});
+router.post("/create", function (req, res, next) {
+    const novoAluno = req.body;
+    const matricula = novoAluno.matricula;
+
+    alunos.content[matricula] = {
+        ...novoAluno,
+        matricula: Number(matricula),
+    };
+
+    res.redirect("/alunos");
 });
 router.put("/matricula/", function (req, res, next) {
     const { matricula } = req.params;
