@@ -19,8 +19,23 @@
                 <th>{{nome}}</th>
                 <th>{{data_nascimento}}</th>
                 <th>{{email}}</th>
-                <td></td>
-                <td></td>
+                <td>
+                    <a
+                        class="btn btn-outline-secondary"
+                        href="alunos/new/"
+                        type="button"
+                    >
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+
+                    <td>
+                        <a
+                            class="btn btn-outline-secondary"
+                            href="alunos/new/"
+                            type="button"
+                        >
+                            <i class="bi bi-trash-fill"></i>
+                        </a></td></td>
             </tr>
         {{/each}}
     </tbody>
@@ -29,18 +44,3 @@
     Novo aluno
     <i class="bi bi-person-add"></i>
 </a>
-{{! <a
-                        class="btn btn-outline-secondary"
-                        href="alunos/new/"
-                        type="button"
-                    >
-                        <i class="bi bi-pencil-square"></i>
-                    </a>
-
-                    <a
-                        class="btn btn-outline-secondary"
-                        href="alunos/new/"
-                        type="button"
-                    >
-                        <i class="bi bi-trash-fill"></i>
-                    </a> }}
