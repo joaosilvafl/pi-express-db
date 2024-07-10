@@ -25,13 +25,11 @@ router.get("/:matricula", function (req, res, next) {
     }
 });
 router.post("/", async function (req, res, next) {
-    const novoAluno = req.body;
     const nome = req.body.nome;
     const matricula = req.body.matricula;
     const email = req.body.email;
     const data_nascimento = req.body.data_nascimento;
 
-    alunos.content[matricula] = [...novoAluno];
     const query = `
     INSERT INTO alunos (matricula, nome, email, data_nascimento)
     VALUES ($1,$2,$3,$4)
@@ -40,13 +38,9 @@ router.post("/", async function (req, res, next) {
     try {
         const data = await db.any(query, values);
         res.status(201).json(data);
-    } catch (error) {}
-    const response = {
-        msg: "Aluno criado com sucesso",
-        aluno: alunos.content[matricula],
-    };
-
-    res.status(201).json(response);
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
 });
 router.put("/:matricula/", function (req, res, next) {
     const novoAluno = req.body;
