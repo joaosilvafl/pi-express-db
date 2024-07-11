@@ -2,7 +2,6 @@
 <table class="table table-primary">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
             <th scope="col">N° de Matrícula</th>
             <th scope="col">Nome Completo</th>
             <th scope="col">Data de Nascimento</th>
@@ -14,16 +13,14 @@
     <tbody>
         {{#each alunos}}
             <tr>
-                <th>1</th>
                 <th>{{matricula}}</th>
                 <th><a href="/alunos/{{matricula}}">{{nome}}</a></th>
-                <th>{{nome}}</th>
                 <th>{{data_nascimento}}</th>
                 <th>{{email}}</th>
                 <td>
                     <a
                         class="btn btn-outline-secondary"
-                        href="alunos/new/"
+                        href="alunos/edit/{{matricula}}"
                         type="button"
                     >
                         <i class="bi bi-pencil-square"></i>
@@ -32,7 +29,7 @@
                     <td>
                         <a
                             class="btn btn-outline-secondary"
-                            href="alunos/new/"
+                            href="alunos/"
                             type="button"
                         >
                             <i class="bi bi-trash-fill"></i>

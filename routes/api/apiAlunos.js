@@ -12,13 +12,14 @@ router.get("/", async function (_req, res, next) {
         res.status(400).json({ msg: error.message });
     }
 });
-router.get("/:matricula", function (req, res, next) {
-    const { matricula } = req.params;
+router.get("/:matricula", async function (req, res, next) {
+    const matricula = req.params.matricula;
+    const values = [matricula];
     const query = `SELECT * 
     FROM alunos 
     WHERE  matricula = $1`;
     try {
-        const aluno = alunos.content[matricula];
+        const aluno = await db.one(query, values);
         res.status(200).json(aluno);
     } catch (error) {
         res.status(400).json({ msg: error.message });
@@ -42,35 +43,38 @@ router.post("/", async function (req, res, next) {
         res.status(400).json({ msg: error.message });
     }
 });
-router.put("/:matricula/", function (req, res, next) {
-    const novoAluno = req.body;
+router.put("/:matricula/", async function (req, res, next) {
     const matricula = req.params.matricula;
-    alunos.content[matricula] = { ...novoAluno, matricula };
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const data_nascimento = req.body.data_nascimento;
+    const values = [matricula, nome, email, data_nascimento];
+
     const query = `
     UPDATE alunos
     SET
     nome = $2,
     email = $3,
-    data_nascimento = $3, 
-    WHERE matricula=$1
+    data_nascimento = $4 
+    WHERE matricula = $1
     `;
-    const response = {
-        msg: "Aluno atualizado com sucesso",
-        aluno: alunos.content[matricula],
-    };
-
-    res.status(200).json(response);
+    try {
+        const aluno = await db.any(query, values);
+        res.status(201).json(aluno);
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
 });
-router.delete("/:matricula", function (req, res, next) {
+router.delete("/:matricula", async function (req, res, next) {
     const matricula = req.params.matricula;
-    delete alunos.content[matricula];
+    const values = [matricula];
     const query = `DELETE FROM alunos WHERE matricula = $1`;
-    const response = {
-        msg: "Aluno removido",
-        aluno: alunos.content[matricula],
-    };
-
-    res.status(200).json(response);
+    try {
+        const data = await db.any(query, values);
+        res.status(201).json(aluno);
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
 });
 
 module.exports = router;
