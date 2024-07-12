@@ -1,4 +1,4 @@
-const { localApi } = require("../config/config_axios");
+const { localApi } = require("../../config/config_axios");
 const express = require("express");
 const router = express.Router();
 const path = require("path");
@@ -54,16 +54,13 @@ router.get("/edit/:matricula", async function (req, res, next) {
     }
 });
 router.post("/create", async function (req, res, next) {
-    const novoAluno = req.body;
-
+    const data = req.body;
+    const apiURLPath = "/api/v1/alunos/";
     try {
-        const resposta = await localApi.get(apiURLPath);
-        const aluno = resposta.data;
-        viewData.aluno = aluno;
-
-        res.status(200).render("form", viewData);
+        await localApi.post(apiURLPath, data);
     } catch (error) {
-        res.json({ msg: error.message });
+    } finally {
+        res.redirect("/alunos/");
     }
 });
 router.put("/matricula/", async function (req, res, next) {
@@ -73,16 +70,21 @@ router.put("/matricula/", async function (req, res, next) {
     const data = req.body;
 
     try {
-        res.redirect("/alunos" + matricula);
+        await localApi.put(apiURLPath, data);
+        res.redirect("/alunos/" + matricula);
     } catch (error) {
-    } finally {
         res.redirect("/alunos/" + matricula);
     }
 });
-router.delete("/:matricula", function (req, res, next) {
-    const { matricula } = req.params;
-    delete alunos.content[matricula];
-    res.redirect(303, "/alunos");
+router.delete("/:matricula", async function (req, res, next) {
+    const matricula = req.params.matricula;
+    try {
+        await localApi.delete("/api/v1/alunos/" + matricula);
+    } catch (error) {
+        res.json({ msg: error.message });
+    } finally {
+        res.redirect(303, "/alunos");
+    }
 });
 
 module.exports = router;
