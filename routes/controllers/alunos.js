@@ -7,7 +7,7 @@ router.get("/", async function (_req, res, next) {
     try {
         const resposta = await localApi.get("/api/v1/alunos");
         const alunos = resposta.data;
-        const viewData = { title: "Alunos", alunos };
+        const viewData = { title: "Cursos dos alunos", alunos };
         res.status(200).render("read", viewData);
     } catch (error) {
         res.json({ msg: error.message });
@@ -17,8 +17,8 @@ router.get("/new", function (_req, res, next) {
     const viewData = {
         metodo: "POST",
         parametro: "create",
-        title: "Novo aluno",
-        buttonText: "Adicionar aluno",
+        title: "Novo Curso",
+        buttonText: "Adicionar",
     };
 
     res.render("form", viewData);

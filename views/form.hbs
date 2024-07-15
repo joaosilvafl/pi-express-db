@@ -2,18 +2,17 @@
 <form action="/alunos/{{parametro}}" method="POST">
 <input type="hidden" name ="_method" value="{{metodo}}">
 <div class="mb-3">
-    <label class="form-label">Nome</label>
-    <input type="text" name="nome" class="form-control" value="{{aluno.nome}}">
-</div>
-<div class="mb-3">
     <label class="form-label">Matricula</label>
     <input type="text" name="matricula" class="form-control" value="{{aluno.matricula}}">
 <div class="mb-3">
-    <label class="form-label">Data de Nacimento</label>
-    <input type="text" name="data_nascimento" class="form-control" value="{{aluno.data_nascimento}}">
+    <label class="form-label">Situação</label>
+    <input type="text" name="situacao" class="form-control" value="{{aluno.situacao}}">
 <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input type="text" name="email" class="form-control" value="{{aluno.email}}">
+    <label class="form-label">Nome do Aluno</label>
+    <input type="text" name="nome_aluno" class="form-control" value="{{aluno.nome_aluno}}">
+<div class="mb-3">
+    <label class="form-label">Curso</label>
+    <input type="text" name="descricao_curso" class="form-control" value="{{descricao_curso}}">
 </div>
 <input type="submit" id="submit" value="{{buttonText}}">
 </form>
