@@ -10,7 +10,7 @@ var indexRouter = require("./routes/index");
 var alunosRouter = require("./routes/controllers/alunos.js");
 var usersRouter = require("./routes/users");
 
-var apiAlunosRouter = require("./routes/apis/apiAlunos");
+var apiAlunosRouter = require("./routes/apis/apiAlunosPi");
 
 var httpMethodOverrider = require("./middlewares/http-method-overrider.js");
 
